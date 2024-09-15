@@ -16,6 +16,7 @@
 
         body {
             background-color: #111;
+            color:antiquewhite;
         }
 
         #layout {
@@ -31,8 +32,8 @@
 
         .flexcontainer {
             display: flex;
-            flex-direction: row;
-            width: 100%;
+            flex-direction: column;
+            height: 100vh;
         }
 
         .option-image {
@@ -47,9 +48,8 @@
         }
 
         .icon {
-            max-height: 64px;
+            max-height: 32px;
             height: auto;
-            display:inline;
         }
 
         select {
@@ -83,19 +83,53 @@
             width: auto;
             height: auto;
         }
-
         #previewbackground {
             background-color: black;
             z-index: -1;
+        }
+        #limbs {
+            z-index: 10;
+        }
+        #toso {
+            z-index: 20;
+        }
+        #helmet {
+            z-index: 30;
+        }
+        #armor {
+            z-index: 40;
+        }
+
+        #link {
+            font-size: medium;
+            width: 300px;
+            text-wrap: balance;
         }
 
         .opt {
             clear: both;
             display: table;
+            white-space: nowrap;
+            width: 300px;
         }
-
+        #misc {
+            width: 300px;   
+        }
         .opt select {
-            transform: translateY(-50%);
+            /* transform: translateY(-50%); */
+        }
+        /* for larger screens */
+        @media screen and (min-width: 600px) {
+            .flexcontainer {
+                display: flex;
+                flex-direction: row;
+                height: 100vh;
+            }
+            .icon {
+                max-height: 64px;
+                height: auto;
+                display:inline;
+            }
         }
 
     </style>
@@ -175,7 +209,7 @@
                 selarmor.selectedIndex = index;
                 $("#select-armor").trigger('change');
             });
-            //create an alert with a shareable link
+            //display a shareable link
             $("#button-share").click(function () {
                 var helm = $('#select-helmet :selected').val();
                 var torso = $('#select-torso :selected').val();
@@ -188,7 +222,7 @@
                 obj['select-armor'] = armor;
                 var url = "https://armoryplaything.onrender.com/index.html?" + $.param(obj);
 
-                alert(url);
+                $("#link").text(url);
 
             });
             //reset
@@ -207,11 +241,11 @@
 <body>
     <div id="layout" class="flexcontainer">
         <div id="options">
-                <div class="opt"><label for="select-helmet"><img src="images/icon-helmet.png" alt="Helmet"
-                            class="icon" /></label>
+                <div class="opt"><img src="images/icon-helmet.png" alt="Helmet"
+                            class="icon" />
                     <select name="select-helmet" id="select-helmet" class="selector">
                         <option value="blank" data-img="blank.png">Choose a helmet</option>
-                        <option value="gorgo-red" data-img="helm-gorgo-red.png">gorgo-red</option>
+                        <option value="gorgo-red" data-img="helm-gorgo-red.png">Gorgo (red)</option>
                         <option value="gorgo-green" data-img="helm-gorgo-green.png">gorgo-green</option>
                         <option value="gorgo-gunmetal" data-img="helm-gorgo-gunmetal.png">gorgo-gunmetal</option>
                         <option value="gorgo-purple" data-img="helm-gorgo-purple.png">gorgo-purple</option>
@@ -234,8 +268,8 @@
                         <option value="swigg" data-img="helm-swigg.png">swigg</option>
                     </select>
                 </div>
-                <div class="opt"><label for="select-torso"><img src="images/icons-torso.png" alt="Torso"
-                            class="icon" /></label>
+                <div class="opt"><img src="images/icons-torso.png" alt="Torso"
+                            class="icon" />
                     <select name="select-torso" id="select-torso" class="selector">
                         <option value="blank" data-img="blank.png">Choose a torso</option>
                         <option value="banded-red" data-img="torso-banded-red.png">banded-red</option>
@@ -252,8 +286,8 @@
                         <option value="leather-purple" data-img="torso-leather-purple.png">leather-purple</option>
                     </select>
                 </div>
-                <div class="opt"><label for="select-limbs"><img src="images/icons-limbs.png" alt="Limbs"
-                            class="icon" /></label>
+                <div class="opt"><img src="images/icons-limbs.png" alt="Limbs"
+                            class="icon" />
                     <select name="select-limbs" id="select-limbs" class="selector">
                         <option value="blank" data-img="blank.png">Choose a set of limbs</option>
                         <option value="valiant-red" data-img="limbs-valiant-red.png">valiant-red</option>
@@ -270,8 +304,8 @@
                         <option value="cloth-purple" data-img="limbs-cloth-purple.png">cloth-purple</option>
                     </select>
                 </div>
-                <div class="opt"><label for="select-armor"><img src="images/icons-armor.png" alt="Armor"
-                            class="icon" /></label>
+                <div class="opt"><img src="images/icons-armor.png" alt="Armor"
+                            class="icon" />
                     <select name="select-armor" id="select-armor" class="selector">
                         <option value="blank" data-img="blank.png">Choose an armor set</option>
                         <option value="impure-red" data-img="armor-impure-red.png">impure-red</option>
@@ -296,6 +330,7 @@
                     <img src="images/icons-reset.png" class="icon" id="button-reset" alt="Reset" />
                     <img src="images/icons-random.png" class="icon" id="button-random" alt="Randomize" />
                     <img src="images/icons-share.png" class="icon" id="button-share" alt="Share" />
+                    <div><span id="link"></span></div>
                 </div>
         </div>
         <div id="preview">

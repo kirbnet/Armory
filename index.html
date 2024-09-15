@@ -49,6 +49,7 @@
         .icon {
             max-height: 64px;
             height: auto;
+            display:inline;
         }
 
         select {
@@ -97,22 +98,6 @@
             transform: translateY(-50%);
         }
 
-        @media screen and (max-width: 600px) {
-            body {
-                background-color:deeppink;
-            }
-
-            .flexcontainer {
-                display: flex;
-                flex-direction: column;
-                display:block;
-            }
-
-            #options {
-                width: 100%;
-                background-color: darkmagenta;
-            }
-        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
@@ -201,7 +186,7 @@
                 obj['select-torso'] = torso;
                 obj['select-limbs'] = limbs;
                 obj['select-armor'] = armor;
-                var url = "index.html?" + $.param(obj);
+                var url = "https://armoryplaything.onrender.com/index.html?" + $.param(obj);
 
                 alert(url);
 

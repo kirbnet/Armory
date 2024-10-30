@@ -85,6 +85,9 @@
             background-color: black;
             z-index: -1;
         }
+        #addon {
+            display: none;
+        }
         /*
         #limbs {
             z-index: 10;
@@ -263,6 +266,10 @@
                 $("#select-armor").val("blank").trigger('change');
                 $("#link").text('');
             })
+            //Add-on Barbarian Limbs
+            $("#button-bare").click(function (){
+                $("#addon").toggle();
+            })
         });
     </script>
 
@@ -313,6 +320,7 @@
                         <option value="leather-green" data-img="torso-leather-green.png">Leather (green)</option>
                         <option value="leather-gunmetal" data-img="torso-leather-gunmetal.png">Leather (gunmetal) *</option>
                         <option value="leather-purple" data-img="torso-leather-purple.png">Leather (purple) *</option>
+                        <option value="bare-barbarian" data-img="torso-bare.png">Bare (barbarian)</option>
                     </select>
                 </div>
                 <div class="opt"><img src="images/icons-limbs.png" alt="Limbs" class="icon" />
@@ -357,11 +365,13 @@
                     <img src="images/icons-random.png" class="icon" id="button-random" alt="Randomize" />
                     <img src="images/icons-reset.png" class="icon" id="button-reset" alt="Reset" />
                     <img src="images/icons-share.png" class="icon" id="button-share" alt="Share" />
+                    <img src="images/icons-bare.png" class="icon" id="button-bare" alt="Bare Option" />
                     <div><span id="link"></span></div>
                 </div>
         </div>
         <div id="preview">
             <img src="images/blank.png" id="limbs" class="option-image" />
+            <img src="images/limbs-bare.png" id="addon" class="option-image" id="addon" />
             <img src="images/blank.png" id="torso" class="option-image" />
             <img src="images/blank.png" id="helmet" class="option-image" />
             <img src="images/blank.png" id="armor" class="option-image" />
